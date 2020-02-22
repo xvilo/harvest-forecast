@@ -29,7 +29,7 @@
     "cache/array-adapter": "^0.4"
   },
   "autoload": {
-    "psr-4": { "Harvest\\Forecast": "lib/Forecast/" }
+    "psr-4": { "Harvest\\Forecast\\": "lib/Forecast/" }
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
