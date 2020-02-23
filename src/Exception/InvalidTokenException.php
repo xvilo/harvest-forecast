@@ -5,5 +5,4 @@ namespace Harvest\Forecast\Exception;
 
 class InvalidTokenException extends AuthenticationException
 {
-
 }
