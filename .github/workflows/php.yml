@@ -16,5 +16,5 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
     
- #   - name: Check php code style (PHP CS Fixer)
- #     run: ./vendor/bin/php-cs-fixer fix -v src/
+    - name: Check php code style (PHP CS Fixer)
+      run: ./vendor/bin/php-cs-fixer fix -v src/
