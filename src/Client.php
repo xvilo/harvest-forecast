@@ -19,6 +19,8 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class Client
 {
+    const DATE_FORMAT = 'Y-m-d';
+
     /**
      * @var Builder
      */
@@ -46,6 +48,11 @@ class Client
      * @var Api\Projects
      */
     public $projects;
+    
+    /**
+     * @var Api\Assignments
+     */
+    public $assignments;
 
     /**
      * @param Builder|null $httpClientBuilder
@@ -63,6 +70,7 @@ class Client
         $this->clients = new Api\Clients($this);
         $this->people = new Api\People($this);
         $this->projects = new Api\Projects($this);
+        $this->assignments = new Api\Assignments($this);
     }
 
     private function setupHttpBuilder(): void
