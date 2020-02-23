@@ -9,4 +9,11 @@ class People extends AbstractApi
     {
         return $this->get('people');
     }
+
+    public function getById(int $id)
+    {
+        return $this->get(
+            sprintf('people/%d', $id)
+        );
+    }
 }
