@@ -29,7 +29,7 @@ $client = new \Harvest\Forecast\Client();
 $client->authenticate('1622120.xx._xyzabcdefghijklmnopqrstuvw', 123456);
 
 // Call endpoint
-$whoAmI = $client->whoAmI();
+$whoAmI = $client->user->whoAmI();
 ```
 
 ## FAQ
