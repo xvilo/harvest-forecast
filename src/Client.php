@@ -59,6 +59,12 @@ class Client
      */
     public $milestones;
 
+    /** @var Api\Billing */
+    public $billing;
+
+    /** @var Api\Accounts */
+    public $accounts;
+
     /**
      * @param Builder|null $httpClientBuilder
      */
@@ -77,6 +83,8 @@ class Client
         $this->projects = new Api\Projects($this);
         $this->assignments = new Api\Assignments($this);
         $this->milestones = new Api\Milestones($this);
+        $this->billing = new Api\Billing($this);
+        $this->accounts = new Api\Accounts($this);
     }
 
     private function setupHttpBuilder(): void
