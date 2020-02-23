@@ -31,3 +31,18 @@ $client->authenticate('1622120.xx._xyzabcdefghijklmnopqrstuvw', 123456);
 // Call endpoint
 $whoAmI = $client->whoAmI();
 ```
+
+## FAQ
+
+### php-http/client-implementation needed
+If you install this package and get the following error: 
+`xvilo/harvest-forecast 1.0.0 requires php-http/client-implementation ^1.0 -> no matching package found`.
+
+Please install a PHP HTTP library such as *Guzzle* or *Symfony HttpClient Component*:
+```
+composer require symfony/http-client
+```
+or 
+```
+composer require php-http/guzzle6-adapter
+```
