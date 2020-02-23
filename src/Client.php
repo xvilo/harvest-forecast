@@ -1,0 +1,128 @@
+<?php
+declare(strict_types=1);
+
+namespace Harvest\Forecast;
+
+use Harvest\Forecast\HttpClient\Builder;
+use Harvest\Forecast\HttpClient\Plugin\Authentication;
+use Harvest\Forecast\HttpClient\Plugin\ForecastExceptionThrower;
+use Harvest\Forecast\HttpClient\Plugin\History;
+use Http\Client\Common\HttpMethodsClient;
+use Http\Client\Common\Plugin;
+use Http\Client\HttpClient;
+use Http\Discovery\UriFactoryDiscovery;
+use Psr\Cache\CacheItemPoolInterface;
+
+/**
+ * Class Client
+ * @author Sem Schilder <me@sem.design>
+ */
+class Client
+{
+    /**
+     * @var Builder
+     */
+    private $httpClientBuilder;
+
+    /**
+     * @var History
+     */
+    private $responseHistory;
+
+    /**
+     * @var Api\User
+     */
+    public $user;
+
+    /**
+     * @param Builder|null $httpClientBuilder
+     */
+    public function __construct(Builder $httpClientBuilder = null)
+    {
+        // Setup Http client
+        $this->responseHistory = new History();
+        $this->httpClientBuilder = $httpClientBuilder ?: new Builder();
+
+        $this->setupHttpBuilder();
+
+        // Setup api
+        $this->user = new Api\User($this);
+    }
+
+    private function setupHttpBuilder(): void
+    {
+        $this->httpClientBuilder->addPlugin(new Plugin\HistoryPlugin($this->responseHistory));
+        $this->httpClientBuilder->addPlugin(new Plugin\RedirectPlugin());
+        $this->httpClientBuilder->addPlugin(new Plugin\AddHostPlugin(UriFactoryDiscovery::find()->createUri('https://api.forecastapp.com')));
+        $this->httpClientBuilder->addPlugin(new ForecastExceptionThrower());
+    }
+
+    /**
+     * Create a Harvest\Forecast\Client using a HttpClient.
+     *
+     * @param HttpClient $httpClient
+     *
+     * @return Client
+     */
+    public static function createWithHttpClient(HttpClient $httpClient)
+    {
+        $builder = new Builder($httpClient);
+
+        return new self($builder);
+    }
+
+    /**
+     * Authenticate a user for all next requests.
+     *
+     * @param string $token
+     * @param int $accountId
+     */
+    public function authenticate(string $token, int $accountId)
+    {
+        $this->getHttpClientBuilder()->removePlugin(Authentication::class);
+        $this->getHttpClientBuilder()->addPlugin(new Authentication($token, $accountId));
+    }
+
+    /**
+     * Add a cache plugin to cache responses locally.
+     *
+     * @param CacheItemPoolInterface $cachePool
+     * @param array                  $config
+     */
+    public function addCache(CacheItemPoolInterface $cachePool, array $config = [])
+    {
+        $this->getHttpClientBuilder()->addCache($cachePool, $config);
+    }
+
+    /**
+     * Remove the cache plugin.
+     */
+    public function removeCache()
+    {
+        $this->getHttpClientBuilder()->removeCache();
+    }
+
+    /**
+     * @return null|\Psr\Http\Message\ResponseInterface
+     */
+    public function getLastResponse()
+    {
+        return $this->responseHistory->getLastResponse();
+    }
+
+    /**
+     * @return HttpMethodsClient
+     */
+    public function getHttpClient()
+    {
+        return $this->getHttpClientBuilder()->getHttpClient();
+    }
+
+    /**
+     * @return Builder
+     */
+    protected function getHttpClientBuilder()
+    {
+        return $this->httpClientBuilder;
+    }
+}
