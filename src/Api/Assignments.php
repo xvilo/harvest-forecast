@@ -8,7 +8,7 @@ use Harvest\Forecast\Client;
 
 class Assignments extends AbstractApi
 {
-    public function getAll(DateTimeInterface $startDate, DateTimeInterface $endDate)
+    public function getByStartAndEndDate(DateTimeInterface $startDate, DateTimeInterface $endDate)
     {
         return $this->get('assignments', [
             'start_date' => $startDate->format(Client::DATE_FORMAT),
