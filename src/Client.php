@@ -33,6 +33,10 @@ class Client
      * @var Api\User
      */
     public $user;
+    /**
+     * @var Api\Clients
+     */
+    public $clients;
 
     /**
      * @param Builder|null $httpClientBuilder
@@ -47,6 +51,7 @@ class Client
 
         // Setup api
         $this->user = new Api\User($this);
+        $this->clients = new Api\Clients($this);
     }
 
     private function setupHttpBuilder(): void
