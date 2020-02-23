@@ -9,4 +9,19 @@ class User extends AbstractApi
     {
         return $this->get('whoami');
     }
+
+    public function getConnections()
+    {
+        return $this->get('user_connections');
+    }
+
+    public function getRoles()
+    {
+        return $this->get('roles');
+    }
+
+    public function getFtuxState()
+    {
+        return $this->get('ftux_state');
+    }
 }
