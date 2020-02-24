@@ -6,7 +6,7 @@ namespace Harvest\Forecast\Api;
 use DateTimeInterface;
 use Harvest\Forecast\Client;
 
-class Milestones extends AbstractApi
+final class Milestones extends AbstractApi
 {
     public function getByStartAndEndDate(DateTimeInterface $startDate, DateTimeInterface $endDate)
     {
