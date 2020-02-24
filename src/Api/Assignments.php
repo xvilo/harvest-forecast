@@ -6,7 +6,7 @@ namespace Harvest\Forecast\Api;
 use DateTimeInterface;
 use Harvest\Forecast\Client;
 
-class Assignments extends AbstractApi
+final class Assignments extends AbstractApi
 {
     public function getByStartAndEndDate(DateTimeInterface $startDate, DateTimeInterface $endDate)
     {
