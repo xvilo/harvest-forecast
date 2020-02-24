@@ -6,7 +6,7 @@ namespace Harvest\Forecast\Api;
 use Harvest\Forecast\Client;
 use Harvest\Forecast\HttpClient\Message\ResponseMediator;
 
-class AbstractApi
+abstract class AbstractApi
 {
     /** @var Client */
     protected $client;
