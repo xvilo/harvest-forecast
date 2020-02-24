@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Harvest\Forecast\Api;
 
-class Projects extends AbstractApi
+final class Projects extends AbstractApi
 {
     public function getAll()
     {
