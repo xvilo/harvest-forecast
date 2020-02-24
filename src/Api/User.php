@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Harvest\Forecast\Api;
 
-class User extends AbstractApi
+final class User extends AbstractApi
 {
     public function whoAmI()
     {
