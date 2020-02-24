@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Harvest\Forecast\Api;
 
-class Billing extends AbstractApi
+final class Billing extends AbstractApi
 {
     /**
      * Get subscription information
