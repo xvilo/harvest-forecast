@@ -1,2 +1,4 @@
 vendor/
 scratch/
+composer.lock
+.php-cs-fixer.cache
