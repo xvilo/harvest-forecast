@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Harvest\Forecast;
@@ -19,7 +20,7 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class Client
 {
-    const DATE_FORMAT = 'Y-m-d';
+    public const DATE_FORMAT = 'Y-m-d';
 
     /**
      * @var Builder
