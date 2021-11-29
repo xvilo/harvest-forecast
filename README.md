@@ -1,17 +1,19 @@
 # Harvest Forecast API Client (PHP)
 
-A Forecast API Wrapper, please not htat there is currently no official public API. However this API client has been made
-by inspecting network traffic from their web client. 
+A Forecast API Wrapper, please note that there is currently no official public API. However this API client has been made
+by inspecting network traffic from their web client.
 
 ### Installation
 You can install this package through composer, the easiest way is to:
-```
+
+```sh
 composer require xvilo/harvest-forecast
 ```
 
+[You will also need an implementation of `php-http/client-implementation`.](#php-httpclient-implementation-needed)
+
 ## Getting Started
-You will need an API access token, you can obtain one from [Harvest Developers](https://id.getharvest.com/developers). 
-Please create a new access token and save this.
+You will need an API access token, you can obtain one from [Harvest Developers](https://id.getharvest.com/developers). Please create a new access token and save this.
 
 ## Usage
 
@@ -30,19 +32,25 @@ $client->authenticate('1622120.xx._xyzabcdefghijklmnopqrstuvw', 123456);
 
 // Call endpoint
 $whoAmI = $client->user->whoAmI();
+echo json_encode ( $whoAmI, JSON_PRETTY_PRINT );
 ```
 
 ## FAQ
 
 ### php-http/client-implementation needed
-If you install this package and get the following error: 
-`xvilo/harvest-forecast 1.0.0 requires php-http/client-implementation ^1.0 -> no matching package found`.
+If you try to install this package and get the following error:
+```
+xvilo/harvest-forecast 1.0.0 requires php-http/client-implementation ^1.0 -> no matching package found
+```
 
 Please install a PHP HTTP library such as *Guzzle* or *Symfony HttpClient Component*:
-```
+
+```sh
 composer require symfony/http-client
 ```
+
 or 
-```
+
+```sh
 composer require php-http/guzzle6-adapter
 ```
