@@ -8,6 +8,6 @@ final class Projects extends AbstractApi
 {
     public function getAll()
     {
-        return $this->get('projects');
+        return $this->get('/projects');
     }
 }

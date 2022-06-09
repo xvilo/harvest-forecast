@@ -13,6 +13,6 @@ final class Billing extends AbstractApi
      */
     public function getSubscription()
     {
-        return $this->get('billing/subscription');
+        return $this->get('/billing/subscription');
     }
 }

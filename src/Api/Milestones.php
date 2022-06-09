@@ -11,7 +11,7 @@ final class Milestones extends AbstractApi
 {
     public function getByStartAndEndDate(DateTimeInterface $startDate, DateTimeInterface $endDate)
     {
-        return $this->get('milestones', [
+        return $this->get('/milestones', [
             'start_date' => $startDate->format(Client::DATE_FORMAT),
             'end_date' => $endDate->format(Client::DATE_FORMAT),
         ]);

@@ -8,13 +8,13 @@ final class People extends AbstractApi
 {
     public function getAll()
     {
-        return $this->get('people');
+        return $this->get('/people');
     }
 
     public function getById(int $id)
     {
         return $this->get(
-            sprintf('people/%d', $id)
+            sprintf('/people/%d', $id)
         );
     }
 }
