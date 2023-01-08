@@ -11,7 +11,7 @@ final class Assignments extends AbstractApi
 {
     public function getByStartAndEndDate(DateTimeInterface $startDate, DateTimeInterface $endDate)
     {
-        return $this->get('assignments', [
+        return $this->get('/assignments', [
             'start_date' => $startDate->format(Client::DATE_FORMAT),
             'end_date' => $endDate->format(Client::DATE_FORMAT),
         ]);
